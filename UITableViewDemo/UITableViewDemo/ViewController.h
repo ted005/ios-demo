@@ -11,7 +11,7 @@
 @interface ViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property NSMutableArray *array;
-@property UITableView *tableView;
+
 
 @end
 
