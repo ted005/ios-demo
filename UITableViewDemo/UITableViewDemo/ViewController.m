@@ -35,6 +35,7 @@
     _sectionTitles = [_sectionTitles sortedArrayUsingSelector:@selector(compare:)];
     
     _tableView = (UITableView *)[self.view viewWithTag:1];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    _tableView.sectionIndexColor = [UIColor blackColor];
 //    _tableView.sectionIndexBackgroundColor = [UIColor grayColor];
 //    _tableView.sectionIndexTrackingBackgroundColor = [UIColor blackColor];
@@ -55,7 +56,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 180;
+    return 120;
 }
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
@@ -85,7 +86,7 @@
 
 //    [cell.contentView setFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y - 50, cell.frame.size.width, cell.frame.size.height - 50)];
     
-    [cell.contentView setBackgroundColor:[UIColor redColor]];
+    [cell.contentView setBackgroundColor:[UIColor clearColor]];
 //    [cell setBackgroundColor:[UIColor greenColor]];
 //    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
@@ -95,14 +96,21 @@
     
     //add subview
     UIView *card = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x + 40, cell.frame.origin.y + 10, 300, 80)];
-    [card setBackgroundColor:[UIColor yellowColor]];
+    [card setBackgroundColor:[self getRandomColor]];
     
-    
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(0, 0, 300, 80);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
+    label.text = [sectionItems objectAtIndex:indexPath.row];
+    [card addSubview:label];
     
     [cell.contentView addSubview:card];
     
-    cell.textLabel.text = [sectionItems objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [sectionItems objectAtIndex:indexPath.row];
 //    cell.textLabel.backgroundColor = [UIColor redColor];
+    
     
     return cell;
     
@@ -131,17 +139,25 @@
     // Create label with section title
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(12, 0, 300, 22);
-    label.backgroundColor = [UIColor grayColor];
+    label.backgroundColor = [UIColor darkGrayColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
     label.text = [sectionTitle stringByAppendingString:@": "];
     
     // Create header view and add label as a subview
     UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 22)];
-    [sectionView setBackgroundColor:[UIColor grayColor]];
+    [sectionView setBackgroundColor:[UIColor blackColor]];
     [sectionView addSubview:label];
     
     return sectionView;
+}
+
+-(UIColor *) getRandomColor{
+    CGFloat hue = (arc4random()%256/256.0);
+    CGFloat saturation = (arc4random()%128/256.0)+0.5;
+    CGFloat brightness = saturation;
+    
+    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
 }
 
 
