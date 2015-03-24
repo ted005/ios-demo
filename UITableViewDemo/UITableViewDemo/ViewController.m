@@ -10,7 +10,11 @@
 
 @interface ViewController ()
 
-@property UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *leftBar;
+@property (weak, nonatomic) IBOutlet UIImageView *add;
+@property (weak, nonatomic) IBOutlet UIImageView *record;
+
 @property NSArray *sectionTitles;
 @property NSDictionary *dict;
 
@@ -34,24 +38,22 @@
     _sectionTitles = _dict.allKeys;
     _sectionTitles = [_sectionTitles sortedArrayUsingSelector:@selector(compare:)];
     
-    _tableView = (UITableView *)[self.view viewWithTag:1];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    _tableView.sectionIndexColor = [UIColor blackColor];
 //    _tableView.sectionIndexBackgroundColor = [UIColor grayColor];
 //    _tableView.sectionIndexTrackingBackgroundColor = [UIColor blackColor];
     
-    //cell
-    //_tableView.rowHeight = 90;
-    UINib *nib = [UINib nibWithNibName:@"cell" bundle:nil];
-    [_tableView registerNib:nib forCellReuseIdentifier:@"cell"];
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_tableView setSeparatorColor:[UIColor clearColor]];
 
 
     //header issue
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-    [self.view addSubview:header];
+//    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
+//    header.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:header];
     
+    
+    
+//    _leftBar.backgroundColor = [UIColor lightGrayColor];
     
 }
 
@@ -78,16 +80,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *identifier = @"cell";
-    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:identifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if(cell == nil){
         cell = [[[UITableViewCell alloc] init] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-
-//    [cell.contentView setFrame:CGRectMake(cell.frame.origin.x, cell.frame.origin.y - 50, cell.frame.size.width, cell.frame.size.height - 50)];
     
     [cell.contentView setBackgroundColor:[UIColor clearColor]];
-//    [cell setBackgroundColor:[UIColor greenColor]];
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 280, 100)];
+    backgroundView.backgroundColor = [UIColor colorWithRed:0.52 green:0.32 blue:0.21 alpha:1];
+    cell.backgroundView = backgroundView;
+    
+    tableView.backgroundColor = [UIColor colorWithRed:0.52 green:0.32 blue:0.21 alpha:1];
+    
 //    [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
     
     NSString *title = [_sectionTitles objectAtIndex:indexPath.section];
@@ -95,11 +101,15 @@
     
     
     //add subview
-    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.origin.x + 40, cell.frame.origin.y + 10, 300, 80)];
+    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 310, 60)];
     [card setBackgroundColor:[self getRandomColor]];
+    card.layer.masksToBounds = NO;
+    card.layer.cornerRadius = 5.0;
+//    card.layer.shadowOffset = CGSizeMake(-1, 1);
+//    card.layer.shadowOpacity = 0.2;
     
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 0, 300, 80);
+    label.frame = CGRectMake(5, 10, 310, 60);
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
@@ -107,11 +117,8 @@
     [card addSubview:label];
     
     [cell.contentView addSubview:card];
-    
-//    cell.textLabel.text = [sectionItems objectAtIndex:indexPath.row];
-//    cell.textLabel.backgroundColor = [UIColor redColor];
-    
-    
+    [cell.contentView sendSubviewToBack:card];
+
     return cell;
     
 }
@@ -126,6 +133,7 @@
     return i;
 }
 
+/**
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [_sectionTitles objectAtIndex:section];
 }
@@ -151,7 +159,9 @@
     
     return sectionView;
 }
-
+*/
+ 
+ 
 -(UIColor *) getRandomColor{
     CGFloat hue = (arc4random()%256/256.0);
     CGFloat saturation = (arc4random()%128/256.0)+0.5;
