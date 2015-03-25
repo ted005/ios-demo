@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UITableViewDemo/ViewController.m"
-            timestampString = "448897558.627075"
+            timestampString = "448985234.87448"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "@implementation ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -22,7 +22,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UITableViewDemo/ViewController.h"
@@ -35,13 +35,13 @@
             landmarkType = "2">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[ViewController array]"
                   moduleName = "UITableViewDemo"
                   urlString = "file:///Users/robbie/Desktop/ios%20demo/UITableViewDemo/UITableViewDemo/ViewController.h"
-                  timestampString = "448891837.489981"
+                  timestampString = "448985247.196686"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -49,13 +49,13 @@
                   offsetFromSymbolStart = "8">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[ViewController setArray:]"
                   moduleName = "UITableViewDemo"
                   urlString = "file:///Users/robbie/Desktop/ios%20demo/UITableViewDemo/UITableViewDemo/ViewController.h"
-                  timestampString = "448891837.490253"
+                  timestampString = "448985247.196914"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -63,38 +63,6 @@
                   offsetFromSymbolStart = "28">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UITableViewDemo/ViewController.m"
-            timestampString = "448897558.627075"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-viewDidAppear:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UITableViewDemo/ViewController.m"
-            timestampString = "448897558.627075"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -120,12 +88,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UITableViewDemo/ViewController.m"
-            timestampString = "448897558.627075"
+            timestampString = "448985191.457496"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-handlePan:withCell:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -136,28 +104,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UITableViewDemo/ViewController.m"
-            timestampString = "448897558.627075"
+            timestampString = "448985761.129244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UITableViewDemo/ViewController.m"
-            timestampString = "448897558.627075"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-handlePan:withCell:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

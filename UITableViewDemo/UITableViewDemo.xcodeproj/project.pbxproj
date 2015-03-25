@@ -15,6 +15,8 @@
 		DCCB3E701AB861C900984D2A /* UITableViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCB3E6F1AB861C900984D2A /* UITableViewDemoTests.m */; };
 		DCF223931AB99CF600ECCB5F /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = DCF223921AB99CF600ECCB5F /* sortednames.plist */; };
 		DCF223971AB9C21B00ECCB5F /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCF223961AB9C21B00ECCB5F /* Launch Screen.xib */; };
+		DCFCA3B21AC2E41300E4EEDA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCFCA3B01AC2E41300E4EEDA /* Model.xcdatamodeld */; };
+		DCFCA3B41AC2E99B00E4EEDA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCFCA3B31AC2E99B00E4EEDA /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		DCCB3E6F1AB861C900984D2A /* UITableViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITableViewDemoTests.m; sourceTree = "<group>"; };
 		DCF223921AB99CF600ECCB5F /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
 		DCF223961AB9C21B00ECCB5F /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
+		DCFCA3B11AC2E41300E4EEDA /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		DCFCA3B31AC2E99B00E4EEDA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCFCA3B41AC2E99B00E4EEDA /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 		DCCB3E471AB861C900984D2A = {
 			isa = PBXGroup;
 			children = (
+				DCFCA3B31AC2E99B00E4EEDA /* CoreData.framework */,
 				DCCB3E521AB861C900984D2A /* UITableViewDemo */,
 				DCCB3E6C1AB861C900984D2A /* UITableViewDemoTests */,
 				DCCB3E511AB861C900984D2A /* Products */,
@@ -92,6 +98,7 @@
 				DCCB3E5D1AB861C900984D2A /* Main.storyboard */,
 				DCCB3E601AB861C900984D2A /* Images.xcassets */,
 				DCCB3E531AB861C900984D2A /* Supporting Files */,
+				DCFCA3B01AC2E41300E4EEDA /* Model.xcdatamodeld */,
 			);
 			path = UITableViewDemo;
 			sourceTree = "<group>";
@@ -231,6 +238,7 @@
 				DCCB3E5C1AB861C900984D2A /* ViewController.m in Sources */,
 				DCCB3E591AB861C900984D2A /* AppDelegate.m in Sources */,
 				DCCB3E561AB861C900984D2A /* main.m in Sources */,
+				DCFCA3B21AC2E41300E4EEDA /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +435,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DCFCA3B01AC2E41300E4EEDA /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DCFCA3B11AC2E41300E4EEDA /* Model.xcdatamodel */,
+			);
+			currentVersion = DCFCA3B11AC2E41300E4EEDA /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DCCB3E481AB861C900984D2A /* Project object */;
 }
