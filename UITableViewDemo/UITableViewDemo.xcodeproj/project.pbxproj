@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC85587E1AC4224C007EC4C4 /* TodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC85587D1AC4224C007EC4C4 /* TodoItem.m */; };
 		DCCB3E561AB861C900984D2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCB3E551AB861C900984D2A /* main.m */; };
 		DCCB3E591AB861C900984D2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCB3E581AB861C900984D2A /* AppDelegate.m */; };
 		DCCB3E5C1AB861C900984D2A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCB3E5B1AB861C900984D2A /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC85587C1AC4224C007EC4C4 /* TodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoItem.h; sourceTree = "<group>"; };
+		DC85587D1AC4224C007EC4C4 /* TodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoItem.m; sourceTree = "<group>"; };
 		DCCB3E501AB861C900984D2A /* UITableViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITableViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCCB3E541AB861C900984D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCCB3E551AB861C900984D2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				DCCB3E601AB861C900984D2A /* Images.xcassets */,
 				DCCB3E531AB861C900984D2A /* Supporting Files */,
 				DCFCA3B01AC2E41300E4EEDA /* Model.xcdatamodeld */,
+				DC85587C1AC4224C007EC4C4 /* TodoItem.h */,
+				DC85587D1AC4224C007EC4C4 /* TodoItem.m */,
 			);
 			path = UITableViewDemo;
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 				DCCB3E591AB861C900984D2A /* AppDelegate.m in Sources */,
 				DCCB3E561AB861C900984D2A /* main.m in Sources */,
 				DCFCA3B21AC2E41300E4EEDA /* Model.xcdatamodeld in Sources */,
+				DC85587E1AC4224C007EC4C4 /* TodoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

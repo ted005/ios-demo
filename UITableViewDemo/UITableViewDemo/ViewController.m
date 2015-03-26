@@ -9,6 +9,13 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
+#import "TodoItem.h"
+
+
+static NSString * const entityName = @"TodoEntry";
+static NSString * const contentIndex = @"index";
+static NSString * const contentValue = @"content";
+
 
 @interface ViewController ()
 
@@ -20,6 +27,7 @@
 //@property NSArray *sectionTitles;
 @property NSMutableArray *textFieldsContent;
 //@property NSDictionary *dict;
+
 
 @end
 
@@ -33,7 +41,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //init textFieldsContent
     _textFieldsContent = [self loadTextFieldsContent];
 
 //    get names from .plist
@@ -54,12 +61,41 @@
     
     [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [_tableView setSeparatorColor:[UIColor clearColor]];
+    _tableView.backgroundColor = [UIColor blackColor];
     
-    UIApplication *app = [UIApplication sharedApplication];
+    
+    //init textFieldsContent
+    
+    /*UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
     
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *request = [[NSFetchRequest alloc]
+                               initWithEntityName:entityName];
     
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    if (objects == nil) {
+        NSLog(@"There was an error!");
+    }
+    
+    for (NSManagedObject *oneObject in objects) {
+        int index = [[oneObject valueForKey:contentIndex] intValue];
+        NSString *content = [oneObject valueForKey:contentValue];
+        
+        [_textFieldsContent insertObject:content atIndex:index];
+    }
+     */
+
 }
+- (IBAction)addButtonPressed:(UIButton *)sender {
+    [_textFieldsContent insertObject:@"" atIndex:0];
+    [_tableView reloadData];
+    TodoItem *cell = [_tableView cellForRowAtIndexPath:0];
+    [cell.textField becomeFirstResponder];
+}
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
@@ -81,107 +117,16 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString *identifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if(cell == nil){
-        cell = [[[UITableViewCell alloc] init] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    
-    [cell.contentView setBackgroundColor:[UIColor clearColor]];
-    
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 280, 100)];
-    backgroundView.backgroundColor = [UIColor blackColor];
-    cell.backgroundView = backgroundView;
-    
-    tableView.backgroundColor = [UIColor blackColor];
-    
-    //add subview
-    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 10, 310, 60)];
-    [card setBackgroundColor:[self colorForIndex:indexPath.row]];
-    card.layer.masksToBounds = YES;
-    card.layer.cornerRadius = 5.0;
-//    card.layer.shadowOffset = CGSizeMake(-1, 1);
-//    card.layer.shadowOpacity = 0.2;
-    
-//    UILabel *label = [[UILabel alloc] init];
-//    label.frame = CGRectMake(5, 10, 310, 60);
-//    label.backgroundColor = [UIColor clearColor];
-//    label.textColor = [UIColor blackColor];
-//    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:14];
-//    label.text = [sectionItems objectAtIndex:indexPath.row];
-    
-    UITextField *textField = [[UITextField alloc] init];
-    textField.text = [_textFieldsContent objectAtIndex:indexPath.row];
-    [textField setFrame:CGRectMake(5, 10, 310, 60)];
-    [textField setBorderStyle:UITextBorderStyleLine];
-    textField.placeholder = @"Hello";
-    textField.textColor = [UIColor blackColor];
-    textField.backgroundColor = [UIColor clearColor];
-    textField.adjustsFontSizeToFitWidth = YES;
-    textField.keyboardType = UIKeyboardTypeAlphabet;
-    textField.keyboardAppearance = UIKeyboardAppearanceDark;
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textField.delegate = self;
-    
-    
-//    [card addSubview:textField];
-    
-    [cell.contentView addSubview:card];
-//    [cell.contentView sendSubviewToBack:card];
-    [cell.contentView addSubview:textField];
-    
-    //gesture
-//    UIGestureRecognizer* recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:cell action:@selector(handlePan:withCell:)];
-//    recognizer.delegate = self;
-//    [cell addGestureRecognizer:recognizer];
+    static NSString *identifier = @"cell";
+
+    [tableView registerClass:[TodoItem class] forCellReuseIdentifier:identifier];
+    TodoItem *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    cell.itemText = [_textFieldsContent objectAtIndex:indexPath.row];
+    cell.index = indexPath.row;
     
     return cell;
-    
 }
 
--(void)handlePan:(UIPanGestureRecognizer *)recognizer withCell: (UITableViewCell *)cell{
-    
-    CGPoint originalCenter;
-    int deleteOnDragRelease = 0;
-    
-    // 1
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        // if the gesture has just started, record the current centre location
-        originalCenter = cell.center;
-    }
-    
-//    // 2
-//    if (recognizer.state == UIGestureRecognizerStateChanged) {
-//        // translate the center
-//        CGPoint translation = [recognizer translationInView:cell];
-//        cell.center = CGPointMake(originalCenter.x + translation.x, originalCenter.y);
-//        // determine whether the item has been dragged far enough to initiate a delete / complete
-//        deleteOnDragRelease = cell.frame.origin.x < -cell.frame.size.width / 2;
-//        
-//    }
-//    
-//    // 3
-//    if (recognizer.state == UIGestureRecognizerStateEnded) {
-//        // the frame this cell would have had before being dragged
-//        CGRect originalFrame = CGRectMake(0, cell.frame.origin.y,
-//                                          cell.bounds.size.width, cell.bounds.size.height);
-//        if (!deleteOnDragRelease) {
-//            // if the item is not being deleted, snap back to the original location
-//            [UIView animateWithDuration:0.2
-//                             animations:^{
-//                                 cell.frame = originalFrame;
-//                             }
-//             ];
-//        }
-//    }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
 
 //index on the right
 //-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
@@ -221,19 +166,9 @@
 }
 */
 
--(UIColor*)colorForIndex:(NSInteger) index {
-    NSUInteger itemCount = _textFieldsContent.count - 1;
-    float val = ((float)index / (float)itemCount) * 0.6;
-    return [UIColor colorWithRed: 1.0 green:val blue: 0.0 alpha:1.0];
-}
+
  
--(UIColor *) getRandomColor{
-    CGFloat hue = (arc4random()%256/256.0);
-    CGFloat saturation = (arc4random()%128/256.0)+0.5;
-    CGFloat brightness = saturation;
-    
-    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
-}
+
 
 //read data from Core Data
 -(NSMutableArray *) loadTextFieldsContent{
@@ -242,9 +177,38 @@
 }
 
 -(void)applicationWillResignActive: (NSNotification *)notification{
-    UIApplication *app = [UIApplication sharedApplication];
-    AppDelegate *delegate = app.delegate;
-//    [delegate ]
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSError *error;
+    
+    for (int i = 0; i < _textFieldsContent.count; i++) {
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc]
+                                   initWithEntityName:entityName];
+        NSPredicate *pred = [NSPredicate
+                             predicateWithFormat:@"(%K = %d)", contentIndex, i];
+        [request setPredicate:pred];
+        
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+        if (objects == nil) {
+            NSLog(@"There was an error!");
+            // Do whatever error handling is appropriate
+        }
+        
+        NSManagedObject *theLine = nil;
+        if ([objects count] > 0) {
+            theLine = [objects objectAtIndex:0];
+        } else {
+            theLine = [NSEntityDescription
+                       insertNewObjectForEntityForName:entityName
+                       inManagedObjectContext:context];
+        }
+        
+        [theLine setValue:[NSNumber numberWithInt:i] forKey:contentIndex];
+        [theLine setValue:[_textFieldsContent objectAtIndex:i] forKey:contentValue];
+        
+    }
+//    [appDelegate saveContext];
     
 }
 

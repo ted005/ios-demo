@@ -33,48 +33,49 @@
                                     <rect key="frame" x="0.0" y="28" width="56" height="764"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="Wx9-aW-rEo">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHt-Od-0Lk">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" backgroundImage="add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="48" width="56" height="52"/>
+                                    <rect key="frame" x="0.0" y="49" width="56" height="48"/>
                                 </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="agf-bn-wGL">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xh2-sz-VjK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPz-fj-5Wf">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" backgroundImage="record">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="133" width="56" height="56"/>
+                                    <rect key="frame" x="0.0" y="129" width="56" height="56"/>
                                 </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="nAF-78-7Gk">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="735" width="56" height="57"/>
-                                </variation>
-                            </imageView>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="64w-1U-aMS"/>
                                 <exclude reference="30F-Yq-YbC"/>
-                                <exclude reference="Wx9-aW-rEo"/>
-                                <exclude reference="agf-bn-wGL"/>
-                                <exclude reference="nAF-78-7Gk"/>
+                                <exclude reference="fHt-Od-0Lk"/>
+                                <exclude reference="HPz-fj-5Wf"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="64w-1U-aMS"/>
                                 <include reference="30F-Yq-YbC"/>
-                                <include reference="Wx9-aW-rEo"/>
-                                <include reference="agf-bn-wGL"/>
-                                <include reference="nAF-78-7Gk"/>
+                                <include reference="fHt-Od-0Lk"/>
+                                <include reference="HPz-fj-5Wf"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="leftBar" destination="30F-Yq-YbC" id="r4z-33-BRM"/>
-                        <outlet property="record" destination="agf-bn-wGL" id="qAX-3M-XGf"/>
                         <outlet property="tableView" destination="64w-1U-aMS" id="8Wd-je-H9h"/>
                     </connections>
                 </viewController>
@@ -86,7 +87,6 @@
     <resources>
         <image name="Image" width="39" height="477"/>
         <image name="add" width="40" height="38"/>
-        <image name="info" width="40" height="39"/>
         <image name="record" width="40" height="43"/>
     </resources>
 </document>
