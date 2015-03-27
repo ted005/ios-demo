@@ -12,5 +12,5 @@
 
 @property UITextField *textField;
 @property NSString *itemText;
-@property NSInteger *index;
+@property NSInteger index;
 @end

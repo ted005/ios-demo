@@ -24,10 +24,7 @@ static NSString * const contentValue = @"content";
 @property (weak, nonatomic) IBOutlet UIImageView *add;
 @property (weak, nonatomic) IBOutlet UIImageView *record;
 
-//@property NSArray *sectionTitles;
 @property NSMutableArray *textFieldsContent;
-//@property NSDictionary *dict;
-
 
 @end
 
@@ -40,8 +37,6 @@ static NSString * const contentValue = @"content";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _textFieldsContent = [self loadTextFieldsContent];
 
 //    get names from .plist
 //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"sortednames" withExtension:@"plist"];
@@ -66,7 +61,7 @@ static NSString * const contentValue = @"content";
     
     //init textFieldsContent
     
-    /*UIApplication *app = [UIApplication sharedApplication];
+    UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -77,7 +72,11 @@ static NSString * const contentValue = @"content";
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
     if (objects == nil) {
-        NSLog(@"There was an error!");
+        NSLog(@"There was an error when trying to retrieving from persistence!");
+    }
+    
+    if(_textFieldsContent == nil){
+        _textFieldsContent = [self loadTextFieldsContent];
     }
     
     for (NSManagedObject *oneObject in objects) {
@@ -86,14 +85,16 @@ static NSString * const contentValue = @"content";
         
         [_textFieldsContent insertObject:content atIndex:index];
     }
-     */
+    
+
+    
 
 }
 - (IBAction)addButtonPressed:(UIButton *)sender {
     [_textFieldsContent insertObject:@"" atIndex:0];
     [_tableView reloadData];
-    TodoItem *cell = [_tableView cellForRowAtIndexPath:0];
-    [cell.textField becomeFirstResponder];
+//    TodoItem *cell = (TodoItem *)[_tableView cellForRowAtIndexPath:0];
+//    [cell.textField becomeFirstResponder];
 }
 
 
@@ -167,12 +168,8 @@ static NSString * const contentValue = @"content";
 */
 
 
- 
-
-
-//read data from Core Data
 -(NSMutableArray *) loadTextFieldsContent{
-    NSMutableArray *testData = [[NSMutableArray alloc] initWithObjects:@"A", @"B", @"C", @"D", nil];
+    NSMutableArray *testData = [[NSMutableArray alloc] initWithObjects:nil];
     return testData;
 }
 
@@ -191,24 +188,25 @@ static NSString * const contentValue = @"content";
         
         NSArray *objects = [context executeFetchRequest:request error:&error];
         if (objects == nil) {
-            NSLog(@"There was an error!");
+            NSLog(@"There was an error when trying to saving to persistence!");
             // Do whatever error handling is appropriate
         }
         
-        NSManagedObject *theLine = nil;
+        NSManagedObject *entry = nil;
         if ([objects count] > 0) {
-            theLine = [objects objectAtIndex:0];
+            entry = [objects objectAtIndex:0];
         } else {
-            theLine = [NSEntityDescription
+            entry = [NSEntityDescription
                        insertNewObjectForEntityForName:entityName
                        inManagedObjectContext:context];
         }
         
-        [theLine setValue:[NSNumber numberWithInt:i] forKey:contentIndex];
-        [theLine setValue:[_textFieldsContent objectAtIndex:i] forKey:contentValue];
+        
+        [entry setValue:[NSNumber numberWithInt:i] forKey:contentIndex];
+        [entry setValue:@"A" forKey:contentValue];
         
     }
-//    [appDelegate saveContext];
+    [appDelegate saveContext];
     
 }
 

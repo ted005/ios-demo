@@ -65,6 +65,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    _itemText = textField.text;
     [textField resignFirstResponder];
     return YES;
 }
