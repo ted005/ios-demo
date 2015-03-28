@@ -92,9 +92,17 @@ static NSString * const contentValue = @"content";
 }
 - (IBAction)addButtonPressed:(UIButton *)sender {
     [_textFieldsContent insertObject:@"" atIndex:0];
-    [_tableView reloadData];
-//    TodoItem *cell = (TodoItem *)[_tableView cellForRowAtIndexPath:0];
-//    [cell.textField becomeFirstResponder];
+    
+    NSArray *insertIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil];
+    [_tableView beginUpdates];
+    
+    [_tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationLeft];
+    
+    [_tableView endUpdates];
+    
+    TodoItem *cell = (TodoItem *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    [cell.textField becomeFirstResponder];
+    
 }
 
 
@@ -178,7 +186,12 @@ static NSString * const contentValue = @"content";
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSError *error;
     
+    //retrieve cells
+    NSArray *cells = [_tableView visibleCells];
+    
     for (int i = 0; i < _textFieldsContent.count; i++) {
+        
+        TodoItem *cell = (TodoItem *)[cells objectAtIndex:i];
         
         NSFetchRequest *request = [[NSFetchRequest alloc]
                                    initWithEntityName:entityName];
@@ -203,7 +216,7 @@ static NSString * const contentValue = @"content";
         
         
         [entry setValue:[NSNumber numberWithInt:i] forKey:contentIndex];
-        [entry setValue:@"A" forKey:contentValue];
+        [entry setValue:cell.textField.text forKey:contentValue];
         
     }
     [appDelegate saveContext];
