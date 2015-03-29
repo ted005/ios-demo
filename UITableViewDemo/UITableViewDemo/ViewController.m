@@ -31,8 +31,8 @@ static NSString * const contentValue = @"content";
 @implementation ViewController
 
 -(void)viewDidAppear:(BOOL)animated{
-    UIScrollView *scrollView = (UIScrollView *)_tableView;
-    [scrollView flashScrollIndicators];
+//    UIScrollView *scrollView = (UIScrollView *)_tableView;
+//    [scrollView flashScrollIndicators];
 }
 
 - (void)viewDidLoad {

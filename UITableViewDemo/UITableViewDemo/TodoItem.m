@@ -22,15 +22,16 @@
     backgroundView.backgroundColor = [UIColor blackColor];
     self.backgroundView = backgroundView;
     
-    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 20, 320, 60)];
+    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 15, 320, 70)];
     [card setBackgroundColor:[self colorForIndex:_index]];
-    card.layer.masksToBounds = YES;
+    card.layer.masksToBounds = NO;
     card.layer.cornerRadius = 5.0;
+    card.clipsToBounds = YES;
     
     _textField = [[UITextField alloc] init];
     _textField.text = _itemText;
-    [_textField setFrame:CGRectMake(8, 20, 320, 60)];
-    [_textField setBorderStyle:UITextBorderStyleRoundedRect];
+    [_textField setFrame:CGRectMake(8, 15, 320, 70)];
+    [_textField setBorderStyle:UITextBorderStyleNone];
     _textField.textColor = [UIColor whiteColor];
     _textField.backgroundColor = [UIColor clearColor];
     _textField.adjustsFontSizeToFitWidth = YES;
