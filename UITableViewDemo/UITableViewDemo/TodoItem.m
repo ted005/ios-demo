@@ -18,19 +18,21 @@
 -(void)layoutSubviews{
     [self.contentView setBackgroundColor:[UIColor blackColor]];
     
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-    backgroundView.backgroundColor = [UIColor blackColor];
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 100)];
+    backgroundView.backgroundColor = [UIColor clearColor];
     self.backgroundView = backgroundView;
     
-    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 15, 320, 70)];
+    UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 15, screenSize.width, 70)];
     [card setBackgroundColor:[self colorForIndex:_index]];
     card.layer.masksToBounds = NO;
-    card.layer.cornerRadius = 5.0;
+//    card.layer.cornerRadius = 5.0;
     card.clipsToBounds = YES;
     
     _textField = [[UITextField alloc] init];
     _textField.text = _itemText;
-    [_textField setFrame:CGRectMake(8, 15, 320, 70)];
+    [_textField setFrame:CGRectMake(8, 15, screenSize.width, 70)];
     [_textField setBorderStyle:UITextBorderStyleNone];
     _textField.textColor = [UIColor whiteColor];
     _textField.backgroundColor = [UIColor clearColor];

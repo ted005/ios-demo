@@ -34,6 +34,23 @@ static NSString * const contentValue = @"content";
 //    UIScrollView *scrollView = (UIScrollView *)_tableView;
 //    [scrollView flashScrollIndicators];
 }
+- (IBAction)handle:(UIPanGestureRecognizer *)sender {
+    CGPoint movePoint = [sender translationInView:self.view];
+    
+    
+    if ([sender state] == UIGestureRecognizerStateEnded) {
+        NSLog(@"ended...");
+        if (movePoint.y >= 300) {
+            [self insertTodoItem];
+        }
+    }
+    
+    if ([sender state] == UIGestureRecognizerStateBegan) {
+        NSLog(@"pulling...");
+    }
+
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,24 +102,29 @@ static NSString * const contentValue = @"content";
         
         [_textFieldsContent insertObject:content atIndex:index];
     }
-    
 
     
 
 }
-- (IBAction)addButtonPressed:(UIButton *)sender {
+
+- (IBAction)addButtonPressed:(UIBarButtonItem *)sender {
+    [self insertTodoItem];
+}
+
+
+-(void)insertTodoItem{
     [_textFieldsContent insertObject:@"" atIndex:0];
     
     NSArray *insertIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil];
     [_tableView beginUpdates];
     
-    [_tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationLeft];
+    [_tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationTop];
     
     [_tableView endUpdates];
     
     TodoItem *cell = (TodoItem *)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     [cell.textField becomeFirstResponder];
-    
+
 }
 
 

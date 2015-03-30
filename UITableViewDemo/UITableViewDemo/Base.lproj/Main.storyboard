@@ -19,74 +19,61 @@
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="64w-1U-aMS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="52" y="28" width="348" height="764"/>
+                                    <rect key="frame" x="0.0" y="64" width="400" height="728"/>
                                 </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="rRf-Us-CRK"/>
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="U6P-lQ-5UB"/>
+                                    <outletCollection property="gestureRecognizers" destination="D0Z-SF-zK9" appends="YES" id="IZS-ZQ-NQb"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="30F-Yq-YbC">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="j8X-qq-EQc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Todo List" id="5f4-NL-5Yj">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Y58-7u-Z99">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="vXZ-lx-hvc" id="lyd-bD-5bA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="28" width="56" height="764"/>
+                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
                                 </variation>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHt-Od-0Lk">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="add">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="49" width="56" height="48"/>
-                                </variation>
-                                <connections>
-                                    <action selector="addButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Xh2-sz-VjK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPz-fj-5Wf">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" backgroundImage="record">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="129" width="56" height="56"/>
-                                </variation>
-                            </button>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="64w-1U-aMS"/>
-                                <exclude reference="30F-Yq-YbC"/>
-                                <exclude reference="fHt-Od-0Lk"/>
-                                <exclude reference="HPz-fj-5Wf"/>
+                                <exclude reference="j8X-qq-EQc"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="64w-1U-aMS"/>
-                                <include reference="30F-Yq-YbC"/>
-                                <include reference="fHt-Od-0Lk"/>
-                                <include reference="HPz-fj-5Wf"/>
+                                <include reference="j8X-qq-EQc"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="leftBar" destination="30F-Yq-YbC" id="r4z-33-BRM"/>
                         <outlet property="tableView" destination="64w-1U-aMS" id="8Wd-je-H9h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="D0Z-SF-zK9">
+                    <connections>
+                        <action selector="handle:" destination="vXZ-lx-hvc" id="L8s-iM-bIN"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="379.5" y="298.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Image" width="39" height="477"/>
-        <image name="add" width="40" height="38"/>
-        <image name="record" width="40" height="43"/>
-    </resources>
 </document>
