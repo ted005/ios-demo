@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TodoItem : UITableViewCell <UITextFieldDelegate>
+@interface TodoItem : UITableViewCell <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property UITextField *textField;
 @property NSString *itemText;
 @property NSInteger index;
+@property BOOL state;
 @end

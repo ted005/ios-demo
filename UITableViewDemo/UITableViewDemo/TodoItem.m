@@ -15,6 +15,44 @@
 
 }
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (void)initialize
+{
+    UISwipeGestureRecognizer *panGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    [panGestureRecognizer setDelegate:self];
+    [self addGestureRecognizer:panGestureRecognizer];
+    
+}
+
+-(void)handlePanGesture:(UISwipeGestureRecognizer *)panGestureRecognizer {
+    
+    NSLog(@"swipe......");
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
+    [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
+    
+    _textField.attributedText = attributedString;
+    UIView *subView = [self.contentView.subviews objectAtIndex:0];//card
+    UITextField *subView2 = [self.contentView.subviews objectAtIndex:1];//textField
+    
+    if(subView2.enabled){
+        subView2.enabled = NO;
+    }
+    
+    if(subView.backgroundColor != [UIColor grayColor]){
+        subView.backgroundColor = [UIColor grayColor];
+    }
+    
+
+}
+
 -(void)layoutSubviews{
     [self.contentView setBackgroundColor:[UIColor blackColor]];
     

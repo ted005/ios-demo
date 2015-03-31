@@ -154,9 +154,16 @@ static NSString * const contentValue = @"content";
     TodoItem *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.itemText = [_textFieldsContent objectAtIndex:indexPath.row];
     cell.index = indexPath.row;
-    
+
     return cell;
 }
+
+
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    NSUInteger itemCount = 5 - 1;
+//    float val = ((float)indexPath.row / (float)itemCount) * 0.6;
+//    cell.backgroundColor = [UIColor colorWithRed: 1.0 green:val blue: 0.0 alpha:1.0];
+//}
 
 
 //index on the right
