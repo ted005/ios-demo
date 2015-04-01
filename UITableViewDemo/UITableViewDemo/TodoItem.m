@@ -26,31 +26,56 @@
 
 - (void)initialize
 {
-    UISwipeGestureRecognizer *panGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-    [panGestureRecognizer setDelegate:self];
-    [self addGestureRecognizer:panGestureRecognizer];
+    //swipe to right
+    UISwipeGestureRecognizer *swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    swipeRightGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [swipeRightGestureRecognizer setDelegate:self];
+    [self addGestureRecognizer:swipeRightGestureRecognizer];
+    
+    UISwipeGestureRecognizer *swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    swipeLeftGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [swipeLeftGestureRecognizer setDelegate:self];
+    [self addGestureRecognizer:swipeLeftGestureRecognizer];
     
 }
 
 -(void)handlePanGesture:(UISwipeGestureRecognizer *)panGestureRecognizer {
     
-    NSLog(@"swipe......");
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
-    [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
-    
-    _textField.attributedText = attributedString;
-    UIView *subView = [self.contentView.subviews objectAtIndex:0];//card
-    UITextField *subView2 = [self.contentView.subviews objectAtIndex:1];//textField
-    
-    if(subView2.enabled){
-        subView2.enabled = NO;
-    }
-    
-    if(subView.backgroundColor != [UIColor grayColor]){
-        subView.backgroundColor = [UIColor grayColor];
-    }
-    
+    if (panGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        NSLog(@"swipe to right......");
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
+        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
+        
+        _textField.attributedText = attributedString;
+        UIView *subView = [self.contentView.subviews objectAtIndex:0];//card
+        UITextField *subView2 = [self.contentView.subviews objectAtIndex:1];//textField
+        
+        if(subView2.enabled){
+            subView2.enabled = NO;
+        }
+        
+        if(subView.backgroundColor != [UIColor grayColor]){
+            subView.backgroundColor = [UIColor grayColor];
+        }
+    } else {
+        NSLog(@"swipe to left......");
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
+//        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
+        
+        _textField.attributedText = attributedString;
+        UIView *subView = [self.contentView.subviews objectAtIndex:0];//card
+        UITextField *subView2 = [self.contentView.subviews objectAtIndex:1];//textField
+        
+        if(!subView2.enabled){
+            subView2.enabled = YES;
+        }
+        
+        if(subView.backgroundColor == [UIColor grayColor]){
+            subView.backgroundColor = [self colorForIndex:_index];
+        }
 
+    }
+    
 }
 
 -(void)layoutSubviews{
