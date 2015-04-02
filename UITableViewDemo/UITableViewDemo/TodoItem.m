@@ -32,6 +32,7 @@
     [swipeRightGestureRecognizer setDelegate:self];
     [self addGestureRecognizer:swipeRightGestureRecognizer];
     
+    //swipe to left
     UISwipeGestureRecognizer *swipeLeftGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     swipeLeftGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [swipeLeftGestureRecognizer setDelegate:self];
@@ -43,6 +44,11 @@
     
     if (panGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         NSLog(@"swipe to right......");
+        
+        if (!_state) {
+            return;
+        }
+        
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
         [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
         
@@ -57,8 +63,16 @@
         if(subView.backgroundColor != [UIColor grayColor]){
             subView.backgroundColor = [UIColor grayColor];
         }
+        
+        _state = NO;
+        
     } else {
         NSLog(@"swipe to left......");
+        
+        if (_state) {
+            return;
+        }
+        
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
 //        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
         
@@ -73,6 +87,8 @@
         if(subView.backgroundColor == [UIColor grayColor]){
             subView.backgroundColor = [self colorForIndex:_index];
         }
+        
+        _state = YES;
 
     }
     
