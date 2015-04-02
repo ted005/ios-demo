@@ -26,6 +26,8 @@
 
 - (void)initialize
 {
+    _state = YES;
+    
     //swipe to right
     UISwipeGestureRecognizer *swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     swipeRightGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
