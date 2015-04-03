@@ -250,6 +250,10 @@ static NSString * const contentValue = @"content";
     }
     [appDelegate saveContext];
     
+    //icon badge
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = _textFieldsContent.count;
+    
 }
 
 
