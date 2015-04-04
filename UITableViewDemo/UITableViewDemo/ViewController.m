@@ -54,6 +54,15 @@ static NSString * const contentValue = @"content";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //black status bar
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    CGSize size = app.statusBarFrame.size;
+    
+    UIView *statusBarView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    statusBarView.backgroundColor  =  [UIColor blackColor];
+    [self.view addSubview:statusBarView];
 
 //    get names from .plist
 //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"sortednames" withExtension:@"plist"];
@@ -78,7 +87,6 @@ static NSString * const contentValue = @"content";
     
     //init textFieldsContent
     
-    UIApplication *app = [UIApplication sharedApplication];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:app];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -103,9 +111,13 @@ static NSString * const contentValue = @"content";
         [_textFieldsContent insertObject:content atIndex:index];
     }
 
-    
-
 }
+
+//foreground color of status bar
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 
 - (IBAction)addButtonPressed:(UIBarButtonItem *)sender {
     [self insertTodoItem];

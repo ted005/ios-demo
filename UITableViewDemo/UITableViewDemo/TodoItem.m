@@ -62,8 +62,8 @@
             subView2.enabled = NO;
         }
         
-        if(subView.backgroundColor != [UIColor grayColor]){
-            subView.backgroundColor = [UIColor grayColor];
+        if(subView.backgroundColor != [UIColor blackColor]){
+            subView.backgroundColor = [UIColor blackColor];
         }
         
         _state = NO;
@@ -86,7 +86,7 @@
             subView2.enabled = YES;
         }
         
-        if(subView.backgroundColor == [UIColor grayColor]){
+        if(subView.backgroundColor == [UIColor blackColor]){
             subView.backgroundColor = [self colorForIndex:_index];
         }
         
@@ -137,7 +137,7 @@
 -(UIColor*)colorForIndex:(NSInteger) index {
     NSUInteger itemCount = 5 - 1;
     float val = ((float)index / (float)itemCount) * 0.6;
-    return [UIColor colorWithRed: 1.0 green:val blue: 0.0 alpha:1.0];
+    return [UIColor colorWithRed: val green:0.9 blue: 0 alpha:0.9];
 }
 
 -(UIColor *) getRandomColor{
