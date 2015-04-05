@@ -26,6 +26,8 @@ static NSString * const contentValue = @"content";
 
 @property NSMutableArray *textFieldsContent;
 
+@property NSMutableArray *states;
+
 @end
 
 @implementation ViewController
@@ -101,7 +103,11 @@ static NSString * const contentValue = @"content";
     }
     
     if(_textFieldsContent == nil){
-        _textFieldsContent = [self loadTextFieldsContent];
+        _textFieldsContent = [self loadArray];
+    }
+    
+    if(_states == nil){
+        _states = [self loadArray];
     }
     
     for (NSManagedObject *oneObject in objects) {
@@ -217,10 +223,11 @@ static NSString * const contentValue = @"content";
 */
 
 
--(NSMutableArray *) loadTextFieldsContent{
+-(NSMutableArray *) loadArray{
     NSMutableArray *testData = [[NSMutableArray alloc] initWithObjects:nil];
     return testData;
 }
+
 
 -(void)applicationWillResignActive: (NSNotification *)notification{
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;

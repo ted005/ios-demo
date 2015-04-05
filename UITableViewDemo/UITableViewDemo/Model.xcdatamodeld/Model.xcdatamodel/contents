@@ -3,8 +3,9 @@
     <entity name="TodoEntry" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TodoEntry" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="TodoEntry" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>
