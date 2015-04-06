@@ -13,5 +13,5 @@
 @property UITextField *textField;
 @property NSString *itemText;
 @property NSInteger index;
-@property BOOL state;
+@property NSInteger state;
 @end

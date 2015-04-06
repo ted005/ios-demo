@@ -15,6 +15,7 @@
 static NSString * const entityName = @"TodoEntry";
 static NSString * const contentIndex = @"index";
 static NSString * const contentValue = @"content";
+static NSString * const contentState = @"state";
 
 
 @interface ViewController ()
@@ -26,7 +27,7 @@ static NSString * const contentValue = @"content";
 
 @property NSMutableArray *textFieldsContent;
 
-@property NSMutableArray *states;
+@property NSMutableArray *states;//NSNumber *
 
 @end
 
@@ -111,10 +112,13 @@ static NSString * const contentValue = @"content";
     }
     
     for (NSManagedObject *oneObject in objects) {
-        int index = [[oneObject valueForKey:contentIndex] intValue];
+        NSInteger index = [[oneObject valueForKey:contentIndex] integerValue];
         NSString *content = [oneObject valueForKey:contentValue];
+        NSInteger state = [[oneObject valueForKey:contentState] integerValue];
         
         [_textFieldsContent insertObject:content atIndex:index];
+        [_states insertObject:[NSNumber numberWithInteger:state] atIndex:index];
+
     }
 
 }
@@ -132,6 +136,7 @@ static NSString * const contentValue = @"content";
 
 -(void)insertTodoItem{
     [_textFieldsContent insertObject:@"" atIndex:0];
+    [_states insertObject:[NSNumber numberWithInteger:1] atIndex:0];
     
     NSArray *insertIndexPaths = [NSArray arrayWithObjects:[NSIndexPath indexPathForRow:0 inSection:0], nil];
     [_tableView beginUpdates];
@@ -172,6 +177,7 @@ static NSString * const contentValue = @"content";
     TodoItem *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.itemText = [_textFieldsContent objectAtIndex:indexPath.row];
     cell.index = indexPath.row;
+    cell.state = [(NSNumber *)[_states objectAtIndex:indexPath.row] integerValue];
 
     return cell;
 }
@@ -265,6 +271,8 @@ static NSString * const contentValue = @"content";
         
         [entry setValue:[NSNumber numberWithInt:i] forKey:contentIndex];
         [entry setValue:cell.textField.text forKey:contentValue];
+//        [entry setValue:[_states objectAtIndex:i] forKey:contentState];
+        [entry setValue:[NSNumber numberWithInteger:cell.state] forKey:contentState];
         
     }
     [appDelegate saveContext];

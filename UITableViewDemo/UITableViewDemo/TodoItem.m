@@ -26,7 +26,7 @@
 
 - (void)initialize
 {
-    _state = YES;
+    _state = 1;
     
     //swipe to right
     UISwipeGestureRecognizer *swipeRightGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
@@ -47,7 +47,7 @@
     if (panGestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         NSLog(@"swipe to right......");
         
-        if (!_state) {
+        if (_state == 0) {
             return;
         }
         
@@ -66,12 +66,12 @@
             subView.backgroundColor = [UIColor blackColor];
         }
         
-        _state = NO;
+        _state = 0;
         
     } else {
         NSLog(@"swipe to left......");
         
-        if (_state) {
+        if (_state == 1) {
             return;
         }
         
@@ -90,7 +90,7 @@
             subView.backgroundColor = [self colorForIndex:_index];
         }
         
-        _state = YES;
+        _state = 1;
 
     }
     
@@ -106,13 +106,10 @@
     self.backgroundView = backgroundView;
     
     UIView *card = [[UIView alloc] initWithFrame:CGRectMake(0, 15, screenSize.width, 70)];
-    [card setBackgroundColor:[self colorForIndex:_index]];
     card.layer.masksToBounds = NO;
-//    card.layer.cornerRadius = 5.0;
     card.clipsToBounds = YES;
     
     _textField = [[UITextField alloc] init];
-    _textField.text = _itemText;
     [_textField setFrame:CGRectMake(8, 15, screenSize.width, 70)];
     [_textField setBorderStyle:UITextBorderStyleNone];
     _textField.textColor = [UIColor whiteColor];
@@ -123,6 +120,22 @@
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _textField.delegate = self;
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_itemText];
+    
+    if (_state == 1) {
+        
+        [card setBackgroundColor:[self colorForIndex:_index]];
+        
+    } else {
+        
+        [card setBackgroundColor:[UIColor blackColor]];
+        
+        [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlinePatternSolid | NSUnderlineStyleSingle) range:NSMakeRange(0, _itemText.length)];
+        
+    }
+    _textField.attributedText = attributedString;
+    
     
     [self.contentView addSubview:card];
     [self.contentView addSubview:_textField];
